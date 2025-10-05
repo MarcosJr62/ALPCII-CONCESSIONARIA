@@ -1,4 +1,4 @@
-class Pessoa:
+class Pessoa():
     def __init__(self, nome, idade, cpf, celular):
         self._nome = nome
         self._idade = idade
@@ -46,3 +46,49 @@ class Pessoa:
         print(f"Idade: {self._idade}")
         print(f"CPF: {self._cpf}")
         print(f"Celular: {self._celular}")
+
+class Carro():
+    def __init__(self, marca, modelo, ano, preco):
+        self._marca = marca
+        self._modelo = modelo
+        self._ano = ano
+        self._preco = preco
+    
+    @property
+    def marca(self):
+        return self._marca
+
+    @marca.setter
+    def marca(self, nova_marca):
+        self._marca = nova_marca
+
+    @property
+    def modelo(self):
+        return self._modelo
+
+    @modelo.setter
+    def modelo(self, novo_modelo):
+        self._modelo = novo_modelo
+
+    @property
+    def ano(self):
+        return self._ano
+
+    @ano.setter
+    def ano(self, novo_ano):
+        self._ano = novo_ano
+
+    @property
+    def preco(self):
+        return self._preco
+
+    @preco.setter
+    def preco(self, novo_preco):
+        self._preco = novo_preco
+    
+    def exibir_dados(self):
+        print("\n--- Dados do Carro ---")
+        print(f"Marca: {self._marca}")
+        print(f"Modelo: {self._modelo}")
+        print(f"Ano: {self._ano}")
+        print(f"Preço: {self._preco}")
