@@ -46,3 +46,10 @@ class Pessoa():
         print(f'Idade: {self._idade}')
         print(f'E-mail: {self._email}')
         print(f'Celular: {self._celular}')   
+
+class Carro():
+     def __init__(self, modelo, ano, preco, marca):
+          self._modelo = modelo
+          self._ano = ano
+          self._preco = preco
+          self._marca = marca
