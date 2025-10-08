@@ -47,6 +47,17 @@ class Pessoa():
         print(f"CPF: {self._cpf}")
         print(f"Celular: {self._celular}")
 
+class Cliente(Pessoa):
+    def __init__(self, nome, idade, cpf, celular, forma_pagamento):
+        super().__init__(nome, idade, cpf, celular)
+        self._forma_pagamento = forma_pagamento
+
+class Vendedor(Pessoa):
+    def __init__(self, nome, idade, cpf, celular, matricula, comissao):
+        super().__init__(nome, idade, cpf, celular)
+        self._matricula = matricula
+        self._comissao = comissao
+
 class Carro():
     def __init__(self, marca, modelo, ano, preco):
         self._marca = marca
