@@ -120,3 +120,5 @@ class Carro():
         print(f"Ano: {self._ano}")
         print(f"Preço: R${self._preco:,.2f}")
         print(f"Status: {'Vendido' if self._vendido else 'Disponível'}")
+
+from datetime import datetime
