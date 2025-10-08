@@ -1,6 +1,6 @@
 from datetime import datetime
 
-# ======================= CLASSES =======================
+#------------------- CLASSES -------------------
 
 class Pessoa:
     def __init__(self, nome, idade, cpf, celular):
@@ -176,7 +176,7 @@ class Venda:
             arquivo.write("\nObrigado por comprar conosco!")
         print(f"Nota fiscal gerada: {nome_arquivo}")
 
-# ======================= FUNÇÕES =======================
+#------------------- FUNÇÕES -------------------
 
 def cadastrar_cliente(lista_clientes):
     nome = input("Nome do cliente: ").strip()
@@ -230,19 +230,16 @@ def realizar_venda(lista_clientes, lista_vendedores, lista_carros, lista_vendas)
         print("Cadastre clientes, vendedores e carros antes de realizar a venda.")
         return
 
-    # Seleciona cliente
     for i, cliente in enumerate(lista_clientes):
         print(f"{i+1}. {cliente.nome}")
     cliente_idx = int(input("Escolha o cliente: ")) - 1
     cliente = lista_clientes[cliente_idx]
 
-    # Seleciona vendedor
     for i, vendedor in enumerate(lista_vendedores):
         print(f"{i+1}. {vendedor.nome}")
     vendedor_idx = int(input("Escolha o vendedor: ")) - 1
     vendedor = lista_vendedores[vendedor_idx]
 
-    # Seleciona carro disponível
     carros_disponiveis = [carro for carro in lista_carros if not carro.vendido]
     if not carros_disponiveis:
         print("Nenhum carro disponível para venda.")
@@ -288,7 +285,7 @@ def exibir_menu():
     print("8. Gerar Nota Fiscal")
     print("9. Sair")
 
-# ======================= MAIN =======================
+#------------------- MAIN -------------------
 
 def main():
     lista_clientes = []
