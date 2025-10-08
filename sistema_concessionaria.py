@@ -1,3 +1,8 @@
+lista_clientes = []
+lista_vendedores = []
+lista_carros = []
+lista_vendas = []
+
 class Pessoa():
     def __init__(self, nome, idade, cpf, celular):
         self._nome = nome
@@ -150,3 +155,15 @@ class Venda:
         print(f"Forma de Pagamento: {self._forma_pagamento}")
         print(f"Data da Venda: {self._data.strftime('%d/%m/%Y %H:%M:%S')}")
 
+    def gerar_nota_fiscal_txt(self):
+        nome_arquivo = f"nota_{self._cliente.nome}_{self._carro.modelo}.txt"
+        with open(nome_arquivo, "w", encoding="utf-8") as arquivo:
+            arquivo.write("--- NOTA FISCAL ---\n\n")
+            arquivo.write(f"Cliente: {self._cliente.nome}\n")
+            arquivo.write(f"Vendedor: {self._vendedor.nome}\n")
+            arquivo.write(f"Carro: {self._carro.marca} {self._carro.modelo} ({self._carro.ano})\n")
+            arquivo.write(f"Valor Total: R${self._valor_total:,.2f}\n")
+            arquivo.write(f"Forma de Pagamento: {self._forma_pagamento}\n")
+            arquivo.write(f"Data da Venda: {self._data.strftime('%d/%m/%Y %H:%M:%S')}\n")
+            arquivo.write("\nObrigado por comprar conosco!")
+        print(f"Nota fiscal gerada: {nome_arquivo}")
