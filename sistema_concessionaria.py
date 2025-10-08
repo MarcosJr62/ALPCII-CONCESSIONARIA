@@ -53,6 +53,7 @@ class Carro():
         self._modelo = modelo
         self._ano = ano
         self._preco = preco
+        self._vendido = False
     
     @property
     def marca(self):
@@ -76,7 +77,10 @@ class Carro():
 
     @ano.setter
     def ano(self, novo_ano):
-        self._ano = novo_ano
+        if novo_ano < 1886:
+            print("Ano inválido. O primeiro carro foi criado em 1886.")
+        else:
+            self._ano = novo_ano
 
     @property
     def preco(self):
@@ -84,11 +88,24 @@ class Carro():
 
     @preco.setter
     def preco(self, novo_preco):
-        self._preco = novo_preco
+        if novo_preco < 0:
+            print("Preço não pode ser negativo.")
+        else:
+            self._preco = novo_preco
+    
+    @property
+    def vendido(self):
+        return self._vendido
+
+    @vendido.setter
+    def vendido(self, status):
+        self._vendido = status
+
     
     def exibir_dados(self):
         print("\n--- Dados do Carro ---")
         print(f"Marca: {self._marca}")
         print(f"Modelo: {self._modelo}")
         print(f"Ano: {self._ano}")
-        print(f"Preço: {self._preco}")
+        print(f"Preço: R${self._preco:,.2f}")
+        print(f"Status: {'Vendido' if self._vendido else 'Disponível'}")
