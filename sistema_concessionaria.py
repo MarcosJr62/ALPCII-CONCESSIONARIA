@@ -1,5 +1,9 @@
 from datetime import datetime
 
+#------------------- DADOS FIXOS (TUPLAS) -------------------
+
+FORMAS_PAGAMENTO = ("Pix", "Cartão", "Dinheiro", "Financiamento")
+
 #------------------- CLASSES -------------------
 
 class Pessoa:
@@ -51,6 +55,7 @@ class Pessoa:
         print(f"CPF: {self._cpf}")
         print(f"Celular: {self._celular}")
 
+
 class Cliente(Pessoa):
     def __init__(self, nome, idade, cpf, celular, forma_pagamento):
         super().__init__(nome, idade, cpf, celular)
@@ -59,6 +64,7 @@ class Cliente(Pessoa):
     @property
     def forma_pagamento(self):
         return self._forma_pagamento
+
 
 class Vendedor(Pessoa):
     def __init__(self, nome, idade, cpf, celular, matricula, comissao):
@@ -73,6 +79,7 @@ class Vendedor(Pessoa):
     @property
     def comissao(self):
         return self._comissao
+
 
 class Carro:
     def __init__(self, marca, modelo, ano, preco):
@@ -136,6 +143,7 @@ class Carro:
         print(f"Preço: R${self._preco:,.2f}")
         print(f"Status: {'Vendido' if self._vendido else 'Disponível'}")
 
+
 class Venda:
     def __init__(self, cliente, vendedor, carro, forma_pagamento):
         self._cliente = cliente
@@ -176,40 +184,69 @@ class Venda:
             arquivo.write("\nObrigado por comprar conosco!")
         print(f"Nota fiscal gerada: {nome_arquivo}")
 
+
 #------------------- FUNÇÕES -------------------
 
-def cadastrar_cliente(lista_clientes):
-    nome = input("Nome do cliente: ").strip()
-    idade = int(input("Idade: "))
-    cpf = input("CPF: ").strip()
-    celular = input("Celular: ").strip()
-    forma_pagamento = input("Forma de pagamento: ").strip()
+def escolher_forma_pagamento():
+    print("\nFormas de pagamento disponíveis:")
+    for i, f in enumerate(FORMAS_PAGAMENTO):
+        print(f"{i + 1}. {f}")
+    try:
+        opcao = int(input("Escolha uma opção: "))
+        if 1 <= opcao <= len(FORMAS_PAGAMENTO):
+            return FORMAS_PAGAMENTO[opcao - 1]
+        else:
+            print("Opção inválida. Será usada 'Pix' por padrão.")
+            return "Pix"
+    except ValueError:
+        print("Erro: digite apenas números.")
+        return "Pix"
 
-    cliente = Cliente(nome, idade, cpf, celular, forma_pagamento)
-    lista_clientes.append(cliente)
-    print(f"Cliente {nome} cadastrado com sucesso!")
+
+def cadastrar_cliente(lista_clientes):
+    try:
+        nome = input("Nome do cliente: ").strip()
+        idade = int(input("Idade: "))
+        cpf = input("CPF: ").strip()
+        celular = input("Celular: ").strip()
+        forma_pagamento = escolher_forma_pagamento()
+
+        cliente = Cliente(nome, idade, cpf, celular, forma_pagamento)
+        lista_clientes.append(cliente)
+        print(f"Cliente {nome} cadastrado com sucesso!")
+    except ValueError:
+        print("Erro: dados inválidos.")
+
 
 def cadastrar_vendedor(lista_vendedores):
-    nome = input("Nome do vendedor: ").strip()
-    idade = int(input("Idade: "))
-    cpf = input("CPF: ").strip()
-    celular = input("Celular: ").strip()
-    matricula = input("Matrícula: ").strip()
-    comissao = float(input("Comissão (%): "))
+    try:
+        nome = input("Nome do vendedor: ").strip()
+        idade = int(input("Idade: "))
+        cpf = input("CPF: ").strip()
+        celular = input("Celular: ").strip()
+        matricula = input("Matrícula: ").strip()
+        comissao = float(input("Comissão (%): "))
 
-    vendedor = Vendedor(nome, idade, cpf, celular, matricula, comissao)
-    lista_vendedores.append(vendedor)
-    print(f"Vendedor {nome} cadastrado com sucesso!")
+        vendedor = Vendedor(nome, idade, cpf, celular, matricula, comissao)
+        lista_vendedores.append(vendedor)
+        print(f"Vendedor {nome} cadastrado com sucesso!")
+    except ValueError:
+        print("Erro: dados inválidos.")
+
 
 def cadastrar_carro(lista_carros):
-    marca = input("Marca: ").strip()
-    modelo = input("Modelo: ").strip()
-    ano = int(input("Ano: "))
-    preco = float(input("Preço: "))
-    
-    carro = Carro(marca, modelo, ano, preco)
-    lista_carros.append(carro)
-    print(f"Carro {marca} {modelo} cadastrado com sucesso!")
+    try:
+        marca = input("Marca: ").strip()
+        modelo = input("Modelo: ").strip()
+        ano = int(input("Ano: "))
+        preco = float(input("Preço: "))
+
+        carro = Carro(marca, modelo, ano, preco)
+        lista_carros.append(carro)
+        print(f"Carro {marca} {modelo} cadastrado com sucesso!")
+    except ValueError:
+        print("Erro: dados inválidos.")
+
 
 def listar_clientes(lista_clientes):
     if not lista_clientes:
@@ -218,6 +255,7 @@ def listar_clientes(lista_clientes):
     for cliente in lista_clientes:
         cliente.exibir_dados()
 
+
 def listar_carros(lista_carros):
     if not lista_carros:
         print("Nenhum carro cadastrado.")
@@ -225,34 +263,41 @@ def listar_carros(lista_carros):
     for carro in lista_carros:
         carro.exibir_dados()
 
+
 def realizar_venda(lista_clientes, lista_vendedores, lista_carros, lista_vendas):
     if not lista_clientes or not lista_vendedores or not lista_carros:
         print("Cadastre clientes, vendedores e carros antes de realizar a venda.")
         return
 
-    for i, cliente in enumerate(lista_clientes):
-        print(f"{i+1}. {cliente.nome}")
-    cliente_idx = int(input("Escolha o cliente: ")) - 1
-    cliente = lista_clientes[cliente_idx]
+    try:
+        for i, cliente in enumerate(lista_clientes):
+            print(f"{i + 1}. {cliente.nome}")
+        cliente_idx = int(input("Escolha o cliente: ")) - 1
+        cliente = lista_clientes[cliente_idx]
 
-    for i, vendedor in enumerate(lista_vendedores):
-        print(f"{i+1}. {vendedor.nome}")
-    vendedor_idx = int(input("Escolha o vendedor: ")) - 1
-    vendedor = lista_vendedores[vendedor_idx]
+        for i, vendedor in enumerate(lista_vendedores):
+            print(f"{i + 1}. {vendedor.nome}")
+        vendedor_idx = int(input("Escolha o vendedor: ")) - 1
+        vendedor = lista_vendedores[vendedor_idx]
 
-    carros_disponiveis = [carro for carro in lista_carros if not carro.vendido]
-    if not carros_disponiveis:
-        print("Nenhum carro disponível para venda.")
-        return
-    for i, carro in enumerate(carros_disponiveis):
-        print(f"{i+1}. {carro.marca} {carro.modelo} ({carro.ano}) - R${carro.preco:,.2f}")
-    carro_idx = int(input("Escolha o carro: ")) - 1
-    carro = carros_disponiveis[carro_idx]
+        carros_disponiveis = [carro for carro in lista_carros if not carro.vendido]
+        if not carros_disponiveis:
+            print("Nenhum carro disponível para venda.")
+            return
 
-    forma_pagamento = input("Forma de pagamento: ").strip()
-    venda = Venda(cliente, vendedor, carro, forma_pagamento)
-    if venda.realizar_venda():
-        lista_vendas.append(venda)
+        for i, carro in enumerate(carros_disponiveis):
+            print(f"{i + 1}. {carro.marca} {carro.modelo} ({carro.ano}) - R${carro.preco:,.2f}")
+        carro_idx = int(input("Escolha o carro: ")) - 1
+        carro = carros_disponiveis[carro_idx]
+
+        forma_pagamento = escolher_forma_pagamento()
+
+        venda = Venda(cliente, vendedor, carro, forma_pagamento)
+        if venda.realizar_venda():
+            lista_vendas.append(venda)
+    except (ValueError, IndexError):
+        print("Erro: opção inválida.")
+
 
 def listar_vendas(lista_vendas):
     if not lista_vendas:
@@ -261,17 +306,22 @@ def listar_vendas(lista_vendas):
     for venda in lista_vendas:
         venda.exibir_dados_venda()
 
+
 def gerar_nota(lista_vendas):
     if not lista_vendas:
         print("Nenhuma venda realizada.")
         return
     for i, venda in enumerate(lista_vendas):
-        print(f"{i+1}. {venda._cliente.nome} comprou {venda._carro.modelo}")
-    escolha = int(input("Escolha a venda para gerar nota fiscal: ")) - 1
-    if 0 <= escolha < len(lista_vendas):
-        lista_vendas[escolha].gerar_nota_fiscal_txt()
-    else:
-        print("Opção inválida.")
+        print(f"{i + 1}. {venda._cliente.nome} comprou {venda._carro.modelo}")
+    try:
+        escolha = int(input("Escolha a venda para gerar nota fiscal: ")) - 1
+        if 0 <= escolha < len(lista_vendas):
+            lista_vendas[escolha].gerar_nota_fiscal_txt()
+        else:
+            print("Opção inválida.")
+    except ValueError:
+        print("Erro: digite apenas números.")
+
 
 def exibir_menu():
     print("\n--- Menu da Concessionária ---")
@@ -284,6 +334,7 @@ def exibir_menu():
     print("7. Listar Vendas")
     print("8. Gerar Nota Fiscal")
     print("9. Sair")
+
 
 #------------------- MAIN -------------------
 
@@ -318,6 +369,7 @@ def main():
             break
         else:
             print("Opção inválida!")
+
 
 if __name__ == "__main__":
     main()
