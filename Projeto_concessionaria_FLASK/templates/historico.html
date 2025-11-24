@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Histórico de Operações</h2>
+
+<div class="history-filter">
+    <p class="lead-text">
+        Abaixo você vê o registro de todos os cadastros, edições e exclusões de veículos.
+    </p>
+</div>
+
+<div class="table-wrapper">
+    {% if historicos %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Data / Hora</th>
+                <th>Tipo</th>
+                <th>Veículo</th>
+                <th>Detalhes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for h in historicos %}
+            <tr>
+                <td>{{ h.data_hora }}</td>
+                <td>
+                    {% if h.tipo == 'Cadastro' %}
+                        <span class="badge badge-cadastro text-white">Cadastro</span>
+                    {% elif h.tipo == 'Exclusão' %}
+                        <span class="badge badge-exclusao text-white">Exclusão</span>
+                    {% else %}
+                        <span class="badge text-bg-secondary">{{ h.tipo }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ h.veiculo }}</td>
+                <td>{{ h.detalhes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-secondary">
+        Nenhum registro de histórico encontrado até o momento.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

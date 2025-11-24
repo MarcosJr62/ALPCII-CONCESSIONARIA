@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Veículo</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="marca" class="form-label">Marca</label>
+        <input type="text" class="form-control" id="marca" name="marca" value="{{ veiculo.marca }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="modelo" class="form-label">Modelo</label>
+        <input type="text" class="form-control" id="modelo" name="modelo" value="{{ veiculo.modelo }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="ano" class="form-label">Ano</label>
+        <input type="number" class="form-control" id="ano" name="ano" value="{{ veiculo.ano }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="preco" class="form-label">Preço</label>
+        <input type="number" step="0.01" class="form-control" id="preco" name="preco" value="{{ veiculo.preco }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+</form>
+{% endblock %}

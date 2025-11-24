@@ -1,0 +1,202 @@
+/* ===== Layout geral ===== */
+body {
+    background-color: #f4f6f9;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    color: #222;
+    margin: 0;
+}
+
+/* Container principal em forma de card */
+.container {
+    background-color: #ffffff;
+    max-width: 1100px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    background-color: #0d6efd;
+    margin-bottom: 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
+}
+
+.navbar-brand {
+    color: rgb(41, 41, 41);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.navbar-brand:hover {
+    color: rgb(41, 41, 41);
+}
+
+.navbar-nav .nav-link {
+    color: rgb(41, 41, 41);
+    margin-left: 10px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgb(41, 41, 41);
+    text-decoration: underline;
+}
+
+/* ===== Títulos ===== */
+h1, h2 {
+    color: #0d6efd;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p.lead-text {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 10px;
+}
+
+/* ===== Tabelas ===== */
+.table {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #0d6efd;
+    color: #ffffff;
+    text-align: center;
+    border-bottom: none;
+}
+
+.table tbody td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Linha ao passar o mouse */
+.table tbody tr:hover {
+    background-color: #f3f4ff;
+}
+
+/* Wrapper da tabela */
+.table-wrapper {
+    margin-top: 15px;
+}
+
+/* ===== Formulários ===== */
+form {
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #374151;
+}
+
+/* ===== Botões ===== */
+.btn {
+    border-radius: 999px;
+    font-weight: 500;
+    padding: 6px 18px;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+}
+
+.btn-warning {
+    background-color: #fbbf24;
+    border-color: #fbbf24;
+    color: #111827;
+}
+
+.btn-warning:hover {
+    background-color: #f59e0b;
+    border-color: #f59e0b;
+    color: #111827;
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    border-color: #ef4444;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+    border-color: #dc2626;
+}
+
+.btn-light {
+    background-color: #e5e7eb;
+    border-color: #e5e7eb;
+    color: #111827;
+}
+
+.btn-light:hover {
+    background-color: #d1d5db;
+    border-color: #d1d5db;
+}
+
+/* Botões de ações na tabela */
+.table-actions .btn {
+    margin: 0 2px;
+}
+
+/* ===== Página inicial ===== */
+.welcome-box {
+    text-align: center;
+    padding: 10px 20px 0 20px;
+}
+
+.welcome-box p {
+    max-width: 700px;
+    margin: 0 auto 10px auto;
+    color: #4b5563;
+}
+
+/* ===== Histórico ===== */
+.history-filter {
+    max-width: 650px;
+    margin: 0 auto 20px auto;
+}
+
+.badge-cadastro {
+    background-color: #22c55e;
+}
+
+.badge-exclusao {
+    background-color: #ef4444;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 15px;
+        padding: 18px 16px;
+    }
+
+    .navbar {
+        padding: 10px 16px;
+    }
+
+    h1, h2 {
+        font-size: 1.4rem;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+}
